@@ -6,16 +6,16 @@
 	outline: none !important;
 }
 
-:root { -
-	-primary: #343a40; -
-	-dark: #282828; -
-	-dark_2: #1b1b1b; -
-	-darker: #121212;
+:root {
+	--primary: #343a40;
+	--dark: #282828;
+	--dark_2: #1b1b1b;
+	--darker: #121212;
 }
 
 body {
 	font-family: "Ubuntu Mono";
-	background-color: var(- -dark_2);
+	background-color: var(--dark_2);
 	display: grid;
 	grid-template-columns: auto 10fr;
 	overflow: hidden;
@@ -23,7 +23,7 @@ body {
 }
 
 .nav {
-	background-color: var(- -darker);
+	background-color: var(--darker);
 	color: white;
 	box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
 	display: flex;
@@ -78,7 +78,7 @@ main {
 }
 
 .card {
-	background-color: var(- -dark);
+	background-color: var(--dark);
 	box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
 	border-radius: 5px;
 	transition: 0.3s;
@@ -147,9 +147,11 @@ main {
 	.card {
 		flex-direction: column !important;
 	}
+
 	.ques {
 		margin-top: 5px;
 	}
+
 	.actions {
 		margin-top: 10px;
 	}
@@ -179,7 +181,7 @@ main {
 	justify-content: space-around;
 	align-items: center;
 	align-content: center;
-	background: var(- -dark);
+	background: var(--dark);
 	border-radius: 10px;
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.37), 0px 0px 10px black;
 	text-shadow: 0px 0px 5px black;
