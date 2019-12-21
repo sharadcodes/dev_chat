@@ -21,7 +21,7 @@ public class LogIn extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		MongoClient mongoClient = MongoClients
-				.create("mongodb+srv://dcadmin:dojomojo9@cluster0-nzssz.mongodb.net/test?retryWrites=true&w=majority");
+				.create(System.getenv("MONGO_URL"));
 		MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
 		@SuppressWarnings("rawtypes")
 		MongoCollection coll = database.getCollection("users");
