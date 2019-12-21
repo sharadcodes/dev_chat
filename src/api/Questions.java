@@ -26,7 +26,7 @@ public class Questions extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		MongoClient mongoClient = MongoClients
-				.create("mongodb+srv://dcadmin:dojomojo9@cluster0-nzssz.mongodb.net/test?retryWrites=true&w=majority");
+				.create(System.getenv("MONGO_URL"));
 		MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
 		MongoCollection<Document> coll = database.getCollection("questions");
 
@@ -62,8 +62,7 @@ public class Questions extends HttpServlet {
 
 		if (req.getSession(false).getAttribute("user_token") != null) {
 
-			MongoClient mongoClient = MongoClients.create(
-					"mongodb+srv://dcadmin:dojomojo9@cluster0-nzssz.mongodb.net/test?retryWrites=true&w=majority");
+			MongoClient mongoClient = MongoClients.create(System.getenv("MONGO_URL"));
 			MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
 			MongoCollection<Document> coll = database.getCollection("questions");
 
