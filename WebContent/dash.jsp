@@ -49,7 +49,19 @@
 	<h2 class="category">Recent Questions</h2>
 
 	<div id="target">
-		<p>Loading questions ... <br /> Please wait</p>
+	
+		<!-- SVG LOADER -->
+			<br />
+			<br />
+			<br />
+			<br />
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; display: block; shape-rendering: auto; animation-play-state: running; animation-delay: 0s;" width="50vw" height="40vh" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+			<path fill="none" stroke="#ffb74d" stroke-width="5" stroke-dasharray="230.93003540039064 25.658892822265614" d="M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40 C88.6 30 95 43.3 95 50s-6.4 20-19.3 20C56.4 70 43.6 30 24.3 30z" stroke-linecap="round" style="transform: scale(0.69); transform-origin: 50px 50px 0px; animation-play-state: running; animation-delay: 0s;">
+			  <animate attributeName="stroke-dashoffset" repeatCount="indefinite" dur="0.9090909090909091s" keyTimes="0;1" values="0;256.58892822265625" style="animation-play-state: running; animation-delay: 0s;"></animate>
+			</path>
+			</svg>
+		<!-- SVG LOADER END -->	
+		
 	</div>
 
 	</main>
