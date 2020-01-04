@@ -53,13 +53,22 @@
 		<div id="editor"></div>
 	</div>
 
+	<div id="loader_container" style="margin-top: 1rem;">
+		<div id="loader"></div>
+	</div>
+	
 	<button id="submit" onclick="submit()">Submit</button>
-
+	
 	<div id="cont"></div>
 	</main>
 
 	<script>
       function submit() {
+		document.getElementById("loader").innerHTML = `
+       		    <p>Submitting please wait...</p>
+        `;    	 
+    	 
+    	  
         const user_id =	`<%= session.getAttribute("uname")%>`;
         const question = document.getElementById("question_text").value;
         const markdown = quill.container.firstChild.innerHTML;
@@ -75,7 +84,17 @@
        	  }
        	})
        	.then( (response) => { 
-       	   //do something awesome that makes the world a better place
+       		if(response.status == 304) {
+    		document.getElementById("loader").innerHTML = `
+           		    <p>Question should be of atleast 4 words</p>
+            `;
+       		}
+       		else if(response.status == 201) {
+        		document.getElementById("loader").innerHTML = `
+        			<p>Submitted</p>
+                `;
+
+        		location.reload(); 
        	});
       }
     </script>

@@ -48,7 +48,9 @@
 
 	<h2 class="category">Recent Questions</h2>
 
-	<div id="target"></div>
+	<div id="target">
+		<p>Loading questions ... <br /> Please wait</p>
+	</div>
 
 	</main>
 
