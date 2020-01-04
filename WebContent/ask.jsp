@@ -95,6 +95,7 @@
                 `;
 
         		location.reload(); 
+			   }
        	});
       }
     </script>
