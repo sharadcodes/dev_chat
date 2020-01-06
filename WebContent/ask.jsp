@@ -82,9 +82,7 @@
        	})
        	.then( (response) => { 
        		if(response.status == 304) {
-    		document.getElementById("loader").innerHTML = `
-           		    <p>Question should be of atleast 4 words</p>
-            `;
+    		document.getElementById("loader").innerHTML = `<p>Question should be of atleast 4 words</p>`;
        		}
        		else if(response.status == 201) {
         		document.getElementById("loader").innerHTML = `

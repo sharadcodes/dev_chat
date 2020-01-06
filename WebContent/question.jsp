@@ -45,7 +45,7 @@
 
 	<main>
 
-	<h2 class="category">Questions</h2>
+	<h2 class="category">Q & A</h2>
 
 	<div id="target">
 	

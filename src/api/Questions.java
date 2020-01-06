@@ -67,9 +67,9 @@ public class Questions extends HttpServlet {
 			MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
 			MongoCollection<Document> coll = database.getCollection("questions");
 
-			String user_id = req.getHeader("user_id") + "";
-			String question = req.getHeader("question") + "";
-			String markdown = req.getHeader("markdown") + "";
+			String user_id = req.getHeader("user_id");
+			String question = req.getHeader("question");
+			String markdown = req.getHeader("markdown");
 
 			if (question.split(" ").length < 5) {
 
@@ -82,11 +82,11 @@ public class Questions extends HttpServlet {
 
 				Map<String, Object> question_details = new HashMap<String, Object>();
 
-				question_details.put("username", user_id);
+				question_details.put("username", user_id.substring(1,user_id.length()-1));
 				question_details.put("bson_date_time", new BSONTimestamp());
 				question_details.put("iso_date_time", new Date());
-				question_details.put("question", question);
-				question_details.put("markdown", markdown);
+				question_details.put("question", question.substring(1,question.length()-1));
+				question_details.put("markdown", markdown.substring(1,markdown.length()-1));
 
 				Document full_data = new Document(question_details);
 
