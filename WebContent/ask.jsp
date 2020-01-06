@@ -64,11 +64,8 @@
 
 	<script>
       function submit() {
-		document.getElementById("loader").innerHTML = `
-       		    <p>Submitting please wait...</p>
-        `;    	 
-    	 
-    	  
+		document.getElementById("loader").innerHTML = `<p>Submitting please wait...</p>`;    	 
+    	     	  
         const user_id =	`<%= session.getAttribute("uname")%>`;
         const question = document.getElementById("question_text").value;
         const markdown = quill.container.firstChild.innerHTML;
@@ -78,9 +75,9 @@
        	  headers: {
        	    'Accept': 'application/json',
        	    'Content-Type': 'application/json',
-       	    'user_id': user_id,
-       	 	'question': question,
-       	 	'markdown': markdown
+       	    'user_id': JSON.stringify(user_id),
+       	 	'question': JSON.stringify(question),
+       	 	'markdown': JSON.stringify(markdown)
        	  }
        	})
        	.then( (response) => { 

@@ -50,4 +50,16 @@
 		<url-pattern>/qapi</url-pattern>
 	</servlet-mapping>
 
+	
+	<servlet>
+		<servlet-name>single_question_api_route</servlet-name>
+		<servlet-class>api.SingleQuestion</servlet-class>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>single_question_api_route</servlet-name>
+		<url-pattern>/sqapi</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

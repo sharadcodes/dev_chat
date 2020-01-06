@@ -8,7 +8,9 @@ ddd.map( i => {
 	
 all_html += 
 	
-`<div class="card">
+`
+<a href="sqapi?ques=${i.id}">
+<div class="card">
 <div class="meta">
 <a href="#"><img class="userimg" src="./assets/icons/profile_1.png" alt=""/></a>
 <a href="#" class="username">@${i.username}</a>
@@ -19,14 +21,15 @@ all_html +=
 ${i.question}
 <br />
 </p>
-<a href="#">
+<a href="sqapi?ques=${i.id}">
 <div class="actions">
 <img src="./assets/icons/comments.png" alt="" />
 <p>X answers</p>
 </div>
 </a>
 </div>
-</div>`;
+</div>
+</a>`;
 
 })
 		document.getElementById("target").innerHTML = all_html + "";

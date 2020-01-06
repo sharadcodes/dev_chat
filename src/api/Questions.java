@@ -39,6 +39,7 @@ public class Questions extends HttpServlet {
 		for (MongoCursor<Document> iterator = cur; iterator.hasNext();) {
 			Document d = (Document) iterator.next();
 			json_response_string += "{ ";
+			json_response_string += "\"id\" :\"" + d.get("_id") + "\",";
 			json_response_string += "\"username\" :\"" + d.get("username") + "\",";
 			json_response_string += "\"iso_date_time\" :\"" + d.get("iso_date_time") + "\",";
 			json_response_string += "\"question\" :\"" + d.get("question") + "\",";
