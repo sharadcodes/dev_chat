@@ -8,7 +8,7 @@ public class DBConnector {
 	private static MongoDatabase database = null;
 
 	public static MongoDatabase getDBConnection() {
-		if(database != null) {
+		if(database == null) {
 			MongoClient mongoClient = MongoClients.create(System.getenv("MONGO_URL"));
 			database = mongoClient.getDatabase("dev_chat_db");
 			return database;
