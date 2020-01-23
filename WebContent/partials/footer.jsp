@@ -7,7 +7,7 @@
 		<p>
 			Copyright
 			<%= Calendar.getInstance().get(Calendar.YEAR) + ""%>
-			Dev_Chat
+			Dev_Chat by <a href="https://linkedin.com/in/srsmaurya">Sharad Raj</a>
 		</p>
 	</div>
 </footer>
