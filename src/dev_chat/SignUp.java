@@ -25,7 +25,7 @@ public class SignUp extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MongoDatabase database = DBConnector.database;
+		MongoDatabase database = DBConnector.getDBConnection();
 		MongoCollection<Document> coll = database.getCollection("users");
 
 		String user_email = req.getParameter("form_email").trim();

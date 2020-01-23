@@ -24,7 +24,7 @@ public class SingleQuestion extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MongoDatabase database = DBConnector.database;
+		MongoDatabase database = DBConnector.getDBConnection();
 		MongoCollection<Document> coll = database.getCollection("questions");
 		
 		

@@ -5,10 +5,17 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
 public class DBConnector {
-	public static MongoDatabase database;
+	private static MongoDatabase database = null;
 
-	public static void initiateConnection() {
-		MongoClient mongoClient = MongoClients.create(System.getenv("MONGO_URL"));
-		database = mongoClient.getDatabase("dev_chat_db");
+	public static MongoDatabase getDBConnection() {
+		if(database != null) {
+			MongoClient mongoClient = MongoClients.create(System.getenv("MONGO_URL"));
+			database = mongoClient.getDatabase("dev_chat_db");
+			return database;
+		}
+		else
+		{
+			return database;
+		}
 	}
 }
