@@ -7,8 +7,8 @@ import com.mongodb.client.MongoDatabase;
 public class DBConnector {
 	public static MongoDatabase database;
 
-	public static MongoDatabase initiateConnection() {
+	public static void initiateConnection() {
 		MongoClient mongoClient = MongoClients.create(System.getenv("MONGO_URL"));
-		return database = mongoClient.getDatabase("dev_chat_db");
+		database = mongoClient.getDatabase("dev_chat_db");
 	}
 }

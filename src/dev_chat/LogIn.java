@@ -20,9 +20,14 @@ import db.DBConnector;
 @SuppressWarnings("serial")
 public class LogIn extends HttpServlet {
 	@Override
+	public void init() throws ServletException {
+		DBConnector.initiateConnection();
+	}
+
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MongoDatabase database = DBConnector.initiateConnection();
+		MongoDatabase database = DBConnector.database;
 		@SuppressWarnings("rawtypes")
 		MongoCollection coll = database.getCollection("users");
 

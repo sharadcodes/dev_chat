@@ -27,7 +27,7 @@ public class Questions extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MongoDatabase database = DBConnector.initiateConnection();
+		MongoDatabase database = DBConnector.database;
 		MongoCollection<Document> coll = database.getCollection("questions");
 
 		var data = coll.find();
@@ -62,7 +62,7 @@ public class Questions extends HttpServlet {
 
 		if (req.getSession(false).getAttribute("user_token") != null) {
 
-			MongoDatabase database = DBConnector.initiateConnection();
+			MongoDatabase database = DBConnector.database;
 			MongoCollection<Document> coll = database.getCollection("questions");
 
 			String user_id = req.getHeader("user_id");
