@@ -18,13 +18,14 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import db.DBConnector;
+
 @SuppressWarnings("serial")
 public class SignUp extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MongoClient mongoClient = MongoClients
-				.create(System.getenv("MONGO_URL"));
-		MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
+
+		MongoDatabase database = DBConnector.initiateConnection();
 		MongoCollection<Document> coll = database.getCollection("users");
 
 		String user_email = req.getParameter("form_email").trim();
@@ -53,13 +54,11 @@ public class SignUp extends HttpServlet {
 
 		if (temp == null) {
 			coll.insertOne(full_data);
-			mongoClient.close();
 			req.setAttribute("message",
 					"Account created succesfully you can <a style='color: #195C44; text-decoration: underline;' href='login.jsp'>login</a> now");
 			req.setAttribute("color", "success");
 			req.getRequestDispatcher("signup.jsp").forward(req, resp);
 		} else {
-			mongoClient.close();
 			req.setAttribute("message", "This E-mail is being used by another account use another E-mail");
 			req.setAttribute("color", "danger");
 			req.getRequestDispatcher("signup.jsp").forward(req, resp);

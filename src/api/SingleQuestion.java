@@ -17,14 +17,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
+import db.DBConnector;
+
 @SuppressWarnings("serial")
 public class SingleQuestion extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MongoClient mongoClient = MongoClients
-				.create(System.getenv("MONGO_URL"));
-		MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
+		MongoDatabase database = DBConnector.initiateConnection();
 		MongoCollection<Document> coll = database.getCollection("questions");
 		
 		
@@ -34,8 +34,6 @@ public class SingleQuestion extends HttpServlet {
 		var data = coll.find(query);
 
 		MongoCursor<Document> cur = data.iterator();
-
-		mongoClient.close();
 		
 		String id = "";
 		String username = "";

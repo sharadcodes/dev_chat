@@ -15,14 +15,14 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+import db.DBConnector;
+
 @SuppressWarnings("serial")
 public class LogIn extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MongoClient mongoClient = MongoClients
-				.create(System.getenv("MONGO_URL"));
-		MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
+		MongoDatabase database = DBConnector.initiateConnection();
 		@SuppressWarnings("rawtypes")
 		MongoCollection coll = database.getCollection("users");
 
@@ -43,15 +43,11 @@ public class LogIn extends HttpServlet {
 				String t_id = "" + ((Document) temp).get("_id");
 				String username = "" + ((Document) temp).get("username");
 
-				mongoClient.close();
-
 				hs.setAttribute("user_token", t_id);
 				hs.setAttribute("uname", username);
 				resp.sendRedirect("dash.jsp");
 
 			} else {
-
-				mongoClient.close();
 
 				req.setAttribute("message", "Wrong password");
 				req.setAttribute("color", "danger");
@@ -60,12 +56,9 @@ public class LogIn extends HttpServlet {
 
 		} else {
 
-			mongoClient.close();
-
 			req.setAttribute("message", "Invalid E-mail");
 			req.setAttribute("color", "danger");
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
-		mongoClient.close();
 	}
 }

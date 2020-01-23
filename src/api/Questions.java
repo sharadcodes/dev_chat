@@ -20,14 +20,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
+import db.DBConnector;
+
 @SuppressWarnings("serial")
 public class Questions extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		MongoClient mongoClient = MongoClients
-				.create(System.getenv("MONGO_URL"));
-		MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
+		MongoDatabase database = DBConnector.initiateConnection();
 		MongoCollection<Document> coll = database.getCollection("questions");
 
 		var data = coll.find();
@@ -35,7 +35,6 @@ public class Questions extends HttpServlet {
 		MongoCursor<Document> cur = data.iterator();
 
 		String json_response_string = "{ \"questions\": [";
-		mongoClient.close();
 		for (MongoCursor<Document> iterator = cur; iterator.hasNext();) {
 			Document d = (Document) iterator.next();
 			json_response_string += "{ ";
@@ -63,8 +62,7 @@ public class Questions extends HttpServlet {
 
 		if (req.getSession(false).getAttribute("user_token") != null) {
 
-			MongoClient mongoClient = MongoClients.create(System.getenv("MONGO_URL"));
-			MongoDatabase database = mongoClient.getDatabase("dev_chat_db");
+			MongoDatabase database = DBConnector.initiateConnection();
 			MongoCollection<Document> coll = database.getCollection("questions");
 
 			String user_id = req.getHeader("user_id");
@@ -91,7 +89,7 @@ public class Questions extends HttpServlet {
 				Document full_data = new Document(question_details);
 
 				coll.insertOne(full_data);
-				mongoClient.close();
+				
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("application/json");
 				resp.setStatus(201);
